@@ -16,8 +16,6 @@ body:
         - No, I need to update.
         - Yes, I'm on the latest stable release of Faroquin.
         - Yes, I'm on the latest pre-release of Faroquin.
-    validations:
-      required: true
   - type: dropdown
     id: faroquin_type
     attributes:
@@ -27,8 +25,6 @@ body:
         - Unselected
         - Windows x64
         - Windows Arm64
-    validations:
-      required: true
   - type: dropdown
     id: mod_list_configuration
     attributes:
@@ -39,42 +35,30 @@ body:
         - Modified version of the default mod list
         - External mods only
         - A mix of external and modified mods
-    validations:
-      required: true
   - type: textarea
     id: mods_involved
     attributes:
       label: Which mods are involved?
       description: (Optional) List the mods related to the issue. Include links or repositories if applicable.
-    validations:
-      required: false
   - type: textarea
     id: balatro_version
     attributes:
       label: What version of Balatro are you using?
       description: Let us know the specific version of Balatro you're working with.
-    validations:
-      required: true
   - type: textarea
     id: steamodded_version
     attributes:
       label: What is your Steamodded version?
       description: You can find the Steamodded version in the top-right corner of the game or in the `version.lua` file.
-      validations:
-      required: true
   - type: textarea
     id: what_happened
     attributes:
       label: What went wrong?
       description: Describe the issue in detail. What did you expect to happen instead? Include steps to reproduce the problem, if possible.
       placeholder: Explain the problem and how to recreate it.
-    validations:
-      required: true
   - type: textarea
     id: logs
     attributes:
       label: Log file output
       description: |
         Attach your `main.log` file, located at `C:\Users\%UserProfile%\AppData\Roaming\faroquin\logs\main.log`. Text is preferred over screenshots, as it's easier to analyze.
-    validations:
-      required: false
