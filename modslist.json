@@ -109,7 +109,7 @@
     {
         "id": "toomanyjokers",
         "name": "Too Many Jokers",
-        "description": "Adds a collection sidebar with an advanced searchbar.",
+        "description": "Adds a collection sidebar for all cards, with an advanced searching feature.",
         "github": "https://github.com/cg-223/toomanyjokers"
     }
 ]
