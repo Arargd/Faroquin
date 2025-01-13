@@ -111,5 +111,11 @@
         "name": "Too Many Jokers",
         "description": "Adds a collection sidebar for all cards, with an advanced searching feature.",
         "github": "https://github.com/cg-223/toomanyjokers"
+    },
+    {
+        "id": "CardSleeves",
+        "name": "Card Sleeves",
+        "description": "Content and API mod that adds Sleeves, a run modifier similar to decks.",
+        "github": "https://github.com/larswijn/CardSleeves"
     }
 ]
