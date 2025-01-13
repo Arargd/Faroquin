@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:;">
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faroquin</title>
+</head>
+
+<body>
+  <div class="sidebar">
+    <input type="text" class="search-bar" id="searchBar" placeholder="Search mods...">
+    <div class="dropdown" id="browseDropdown">
+      <div class="dropdown-header">
+        Browse Mods <span class="dropdown-arrow">▼</span>
+      </div>
+      <div class="dropdown-content" id="browseMods"></div>
+    </div>
+    <div class="dropdown" id="installedDropdown">
+      <div class="dropdown-header">
+        Installed Mods <span class="dropdown-arrow">▼</span>
+      </div>
+      <div class="dropdown-content" id="installedMods"></div>
+    </div>
+    <div class="dropdown" id="loaderDropdown">
+      <div class="dropdown-header">
+        Mod Loaders <span class="dropdown-arrow">▼</span>
+      </div>
+      <div class="dropdown-content" id="loaderMods"></div>
+    </div>
+  </div>
+  
+  <div class="buttons-container">
+    <div class="play-btn">
+      <span class="dropdown-arrow">◄</span>
+    </div>
+    <div class="settings-btn">
+      <span class="dropdown-arrow">⚙</span>
+    </div>
+    <div class="collapse-btn">
+      <span class="dropdown-arrow">◁</span>
+    </div>
+  </div>
+  
+  <div id="SettingsModal" class="modal">
+    <div class="modal-content">
+      <h2>Settings</h2>
+      <p id="modalMessage"></p>
+      <form id="settingsForm">
+        <div class="form-group">
+          <label for="gamePath">Game Path:</label>
+          <input type="text" id="gamePath" placeholder="Path to game" readonly>
+          <button type="button" id="browseGame">Browse</button>
+        </div>
+        <div class="form-group">
+          <label for="modsPath">Mods Path:</label>
+          <input type="text" id="modsPath" placeholder="Path to mods" readonly>
+          <button type="button" id="browseModsPath">Browse</button>
+        </div>
+        <div class="form-group">
+          <label for="autoUpdateToggle">Auto-update mod list index:</label>
+          <div class="switch-container">
+            <label class="switch">
+              <input type="checkbox" id="autoUpdateToggle" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="button" id="saveConfigBtn">Save</button>
+          <button type="button" id="resetConfigBtn">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>  
+  
+  <div class="content" id="modContent">
+    <h2>Select a Mod</h2>
+    <p>Details will appear here.</p>
+  </div>
+
+  <script src="index.js"></script>
+
+</body>
+
+</html>

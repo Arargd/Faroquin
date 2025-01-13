@@ -1,0 +1,115 @@
+// This is incredbly cursed
+// But I don't know the ideal way to package this file with electron-builder
+
+const modlistString = `[
+    {
+        "id": "steamodded",
+        "name": "Steamodded",
+        "description": "Steamodded is a mod loader and injector.",
+        "github": "https://github.com/Steamodded/smods",
+        "specialDownload": "https://github.com/Steamodded/smods/archive/350aff8b2cdef6d00e3b554f8ffa9d1b49728ba0.zip",
+        "core": true
+    },
+    {
+        "id": "lovely",
+        "name": "Lovely Injector",
+        "description": "Lovely is a lua injector which embeds code into a LÖVE 2d game at runtime.",
+        "github": "https://github.com/ethangreen-dev/lovely-injector",
+        "specialDownload": "https://github.com/ethangreen-dev/lovely-injector/releases/download/v0.6.0/lovely-x86_64-pc-windows-msvc.zip",
+        "core": true
+    },
+    {
+        "id": "BossJokers",
+        "name": "Boss Jokers",
+        "description": "Adds Boss Jokers",
+        "github": "https://github.com/KilledByLava/BossJokers"
+    },
+    {
+        "id": "Cardsauce",
+        "name": "Cardsauce",
+        "description": "A Vinesauce-themed expansion for Balatro, made in collaboration with the Balatro Discord and Vinesauce communities!",
+        "github": "https://github.com/BarrierTrio/Cardsauce",
+        "specialDownload": "https://github.com/BarrierTrio/Cardsauce/archive/65c1a8ee3f9fe744d4b35d93a47b917919dbdba2.zip"
+    },
+    {
+        "id": "Buffoonery",
+        "name": "Buffoonery",
+        "description": "A vanilla-adjacent joker pack made with the help of the glorious Balatro modding community.",
+        "github": "https://github.com/pinkmaggit-hub/Buffoonery"
+    },
+    {
+        "id": "CheesyJokers",
+        "name": "Cheesy Jokers",
+        "description": "Might as well make my own joker pack since so may other people are doing it.",
+        "github": "https://github.com/ilikecheese0/CheesyJokers"
+    },
+    {
+        "id": "kcvanilla",
+        "name": "KCVanilla",
+        "description": "A Joker pack featuring plausible, vanilla-style powers and a faithful art style",
+        "github": "https://github.com/kcgidw/kcvanilla"
+    },
+    {
+        "id": "JankJonklersMod",
+        "name": "Jank Jonklers",
+        "description": "Adds a bunch of Jank Jonklers.",
+        "github": "https://github.com/spikeof2010/JankJonklers"
+    },
+    {
+        "id": "7DeadlyDecks",
+        "name": "Seven Deadly Decks",
+        "description": "Adds 7 new decks to the game, themed after the 7 Deadly Sins.",
+        "github": "https://github.com/AstroLightz/Balatro-7DeadlyDecks"
+    },
+    {
+        "id": "mtl_jkr",
+        "name": "Pampa Joker Pack",
+        "description": "Adds 28 Jokers in the game",
+        "github": "https://github.com/batabata3/balatro-pampa-joker-pack"
+    },
+    {
+        "id": "Bunco",
+        "name": "Bunco",
+        "description": "Mod aiming for vanilla style, a lot of new Jokers, Blinds, other stuff and Exotic Suits system!",
+        "github": "https://github.com/Firch/Bunco"
+    },
+    {
+        "id": "Cosmos",
+        "name": "Cosmos",
+        "description": "A vanilla-like mod made by the Cosmos team, a small group of dedicated artists and programmers!",
+        "github": "https://github.com/neatoqueen/Cosmos"
+    },
+    {
+        "id": "extracredit",
+        "name": "Extra Credit",
+        "description": "A small-scale vanilla-style content mod for Balatro University! Check out the Interns tab!",
+        "github": "https://github.com/GuilloryCraft/ExtraCredit"
+    },
+    {
+        "id": "FusionJokers",
+        "name": "Fusion Jokers",
+        "description": "Adds the ability to fuse jokers into special new jokers!",
+        "github": "https://github.com/itayfeder/Fusion-Jokers"
+    },
+    {
+        "id": "no_laughing_matter",
+        "name": "No Laughing Matter",
+        "description": "A mod based on Modlich_303's joker ideas.",
+        "github": "https://github.com/Minirebel/no-laughing-matter"
+    },
+    {
+        "id": "paperback",
+        "name": "Paperback",
+        "description": "A vanilla-centered mod built upon expanding the base game with jokers.",
+        "github": "https://github.com/GitNether/paperback"
+    },
+    {
+        "id": "sdm0sstuff",
+        "name": "SDM_0's Stuff",
+        "description": "Content mod that adds new jokers, consumables, decks, and challenges.",
+        "github": "https://github.com/SDM0/SDM_0-s-Stuff"
+    }
+]`;
+  
+  module.exports = modlistString;
+  

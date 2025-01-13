@@ -1,0 +1,59 @@
+{
+  "name": "faroquin",
+  "version": "1.0.0-beta",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "dist": "electron-builder --win"
+  },
+  "keywords": [],
+  "author": "Arargd",
+  "license": "ISC",
+  "description": "Faroquin",
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "electron-log": "^5.2.4",
+    "marked": "^15.0.5"
+  },
+  "build": {
+    "appId": "com.faroquin.modmanager",
+    "productName": "Faroquin",
+    "files": [
+      "dist/**/*",
+      "build/**/*",
+      "index.html",
+      "preload.js",
+      "main.js",
+      "modlist.js",
+      "index.js",
+      "modsLoader.js",
+      "styles.css"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "build/icon.png"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "build/icon.png"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "icon": "build/icon.png"
+    }
+  }
+}
