@@ -105,5 +105,11 @@
         "name": "SDM_0's Stuff",
         "description": "Content mod that adds new jokers, consumables, decks, and challenges.",
         "github": "https://github.com/SDM0/SDM_0-s-Stuff"
+    },
+    {
+        "id": "toomanyjokers".
+        "name": "Too Many Jokers",
+        "description": "Adds a collection sidebar with an advanced searchbar.",
+        "github": "https://github.com/cg-223/toomanyjokers"
     }
 ]
