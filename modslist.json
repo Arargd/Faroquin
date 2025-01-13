@@ -117,5 +117,5 @@
         "name": "Card Sleeves",
         "description": "Content and API mod that adds Sleeves, a run modifier similar to decks.",
         "github": "https://github.com/larswijn/CardSleeves"
-    },
+    }
 ]
