@@ -16,5 +16,5 @@ Currently this program is in development, but there is a [Beta Release](https://
 Please add any contributions or issues you have as it would be greatly helpful!
 
 # Attributions 
-[Hero Icons](https://github.com/tailwindlabs/heroicons) (Awesome open source icons)
-**You**, the Balatro, and Open Source Community :heart:
+- [Hero Icons](https://github.com/tailwindlabs/heroicons) (Awesome open source icons) 
+- **You**, the Balatro, and Open Source Community :heart:
