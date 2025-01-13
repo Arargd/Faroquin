@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for reporting a bug with Faroquin, the mod manager for Balatro. Please provide as many details as you can to help us diagnose and fix the problem.
+        Thank you for reporting a bug with Faroquin. Please provide as many details as you can to help us diagnose and fix the problem.
   - type: dropdown
     id: faroquin_version
     attributes:
@@ -29,6 +29,18 @@ body:
         - Windows Arm64
     validations:
       required: true
+  - type: dropdown
+    id: mod_list_configuration
+    attributes:
+      label: Which mod list are you using?
+      description: Specify whether you're using the default mod list that came with Faroquin, a modified version, or external mods.
+      options:
+        - Default mod list (from the launcher)
+        - Modified version of the default mod list
+        - External mods only
+        - A mix of external and modified mods
+    validations:
+      required: true
   - type: textarea
     id: mods_involved
     attributes:
@@ -42,6 +54,13 @@ body:
       label: What version of Balatro are you using?
       description: Let us know the specific version of Balatro you're working with.
     validations:
+      required: true
+  - type: textarea
+    id: steamodded_version
+    attributes:
+      label: What is your Steamodded version?
+      description: You can find the Steamodded version in the top-right corner of the game or in the `version.lua` file.
+      validations:
       required: true
   - type: textarea
     id: what_happened
