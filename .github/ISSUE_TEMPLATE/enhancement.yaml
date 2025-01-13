@@ -11,25 +11,25 @@ body:
     id: enhancement_summary
     attributes:
       label: What would you like to see improved or added?
-      description: Briefly describe your suggestion or feature idea.
-      placeholder: Example: Add support for sorting mods by install date.
+      description: "Briefly describe your suggestion or feature idea."
+      placeholder: "Example: Add support for sorting mods by install date."
   - type: textarea
     id: current_behavior
     attributes:
       label: What is the current behavior or limitation?
-      description: Explain what currently happens in Faroquin that your suggestion would improve upon.
-      placeholder: Example: There’s no way to see when mods were installed.
+      description: "Explain what currently happens in Faroquin that your suggestion would improve upon."
+      placeholder: "Example: There’s no way to see when mods were installed."
   - type: textarea
     id: desired_behavior
     attributes:
       label: What is the desired behavior or outcome?
-      description: Explain what the feature or improvement would do and how it would work.
-      placeholder: Example: A column in the mod manager that shows the installation date for each mod.
+      description: "Explain what the feature or improvement would do and how it would work."
+      placeholder: "Example: A column in the mod manager that shows the installation date for each mod."
   - type: dropdown
     id: complexity
     attributes:
       label: How complex is this change?
-      description: Estimate the complexity of implementing this feature or improvement.
+      description: "Estimate the complexity of implementing this feature or improvement."
       options:
         - Low (e.g., UI adjustment or small addition)
         - Medium (e.g., adding a new module or functionality)
@@ -38,5 +38,5 @@ body:
     id: additional_context
     attributes:
       label: Additional context or screenshots
-      description: (Optional) Add any extra details, context, or visual aids to clarify your request.
-      placeholder: Include screenshots, diagrams, or links to references if applicable.
+      description: "(Optional) Add any extra details, context, or visual aids to clarify your request."
+      placeholder: "Include screenshots, diagrams, or links to references if applicable."
