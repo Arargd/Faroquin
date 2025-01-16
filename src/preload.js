@@ -15,7 +15,7 @@ contextBridge.exposeInMainWorld('api', {
   launchGame: () => ipcRenderer.invoke('launch-game'),
   log: (message) => ipcRenderer.send('log-message', message),
   logError: (message) => ipcRenderer.send('log-error', message),
-  openFileDialog: (initialDirectory) => ipcRenderer.invoke('open-file-dialog', initialDirectory),
+  openFileDialog: (initialDirectory, fileType) => ipcRenderer.invoke('open-file-dialog', initialDirectory, fileType),
   saveConfig: (gamePath, modPath, autoUpdate) => ipcRenderer.invoke('save-config', gamePath, modPath, autoUpdate),
   startupCheck: () => ipcRenderer.invoke('startup-check'),
   updateModlist: () => ipcRenderer.invoke('update-modlist') 

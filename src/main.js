@@ -15,7 +15,8 @@ const log = require('electron-log');
 
 // -- Global Variables --
 // These need to be flexible for multiple OS later
-let gameDir = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Balatro";
+let gameExe = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Balatro\\Balatro.exe";
+let gameDir = path.dirname(gameExe);
 let modsDir = path.join(os.homedir(), 'AppData', 'Roaming', 'Balatro', 'Mods');
 const configPath = app.isPackaged
   ? path.join(app.getPath('userData'), 'config.json')
@@ -77,7 +78,7 @@ app.on('ready', () => {
   })
 
   // Opens developer window for debugging
-  //mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 });
 
 app.on('window-all-closed', () => {
@@ -103,19 +104,27 @@ ipcMain.handle('get-mods', async () => {
 });
 
 function loadConfig() {
-  if (!fs.existsSync(configPath)) {
-    const defaultConfig = { gameDir, modsDir, autoUpdate: true };
-    fs.writeFileSync(configPath, JSON.stringify(defaultConfig, null, 2), 'utf-8');
-    return { startup: false, config: defaultConfig };
+  const defaultConfig = { gameExe, modsDir, autoUpdate: true };
+
+  try {
+    if (fs.existsSync(configPath)) {
+      const configData = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+      if (configData.gameExe && configData.modsDir && typeof configData.autoUpdate === 'boolean') {
+        return { startup: true, config: configData };
+      }
+    }
+  } catch (error) {
+    log.error('Error reading config, resetting to default:', error.message);
   }
 
-  const configData = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
-  return { startup: true, config: configData };
+  fs.writeFileSync(configPath, JSON.stringify(defaultConfig, null, 2), 'utf-8');
+  return { startup: false, config: defaultConfig };
 }
+
 
 function saveConfig(gamePath, modPath, autoUpdate) {
   const newConfig = {
-    gameDir: gamePath || gameDir,
+    gameExe: gamePath || gameExe,
     modsDir: modPath || modsDir,
     autoUpdate: autoUpdate,
   };
@@ -123,7 +132,8 @@ function saveConfig(gamePath, modPath, autoUpdate) {
   fs.writeFileSync(configPath, JSON.stringify(newConfig, null, 2), 'utf-8');
 
   // Update the in-memory variables
-  gameDir = newConfig.gameDir;
+  gameExe = newConfig.gameExe;
+  gameDir = path.dirname(gameExe);
   modsDir = newConfig.modsDir;
 
   return { success: true, config: newConfig };
@@ -185,9 +195,8 @@ ipcMain.handle('update-modlist', async () => {
 
 // Utilized by the launch game sidebar button
 ipcMain.handle('launch-game', async () => {
-  const executablePath = path.join(gameDir, 'Balatro.exe');
   return new Promise((resolve, reject) => {
-    exec(executablePath, (err, stdout, stderr) => {
+    exec(gameExe, (err, stdout, stderr) => {
       if (err) {
         log.error('Error launching game:', err);
         reject(`Failed to launch game: ${err.message}`);
@@ -208,11 +217,21 @@ ipcMain.handle('launch-game', async () => {
 
 // For the "Browse" buttons in the settings menu
 // This will open the file dialog and allow the user to select a directory/file
-ipcMain.handle('open-file-dialog', async (event, initialDirectory) => {
+// Allows passing a specific file-type, say .exe to only show executables
+ipcMain.handle('open-file-dialog', async (event, initialDirectory, fileType = null) => {
+  const dialogProperties = fileType 
+    ? ['openFile'] 
+    : ['openDirectory']; 
+
+  const filters = fileType
+    ? [{ name: `${fileType.toUpperCase()} Files`, extensions: [fileType.replace('.', '')] }]
+    : [];
+
   const result = await dialog.showOpenDialog({
-    properties: ['openDirectory', 'openFile'],
-    title: 'Select a File or Folder',
-    defaultPath: initialDirectory, // Use the passed initial directory
+    properties: dialogProperties,
+    title: fileType ? `Select a ${fileType.toUpperCase()} File` : 'Select a Folder',
+    defaultPath: initialDirectory, 
+    filters: filters,
   });
 
   if (result.canceled) {
@@ -221,6 +240,7 @@ ipcMain.handle('open-file-dialog', async (event, initialDirectory) => {
 
   return result.filePaths[0];
 });
+
 
 // -- ipcHandlers GitHub --
 
@@ -332,7 +352,7 @@ async function fetchCommitHash(apiUrl, modItem) {
 // -- ipcHandlers Files -- 
 
 // Provided a partial path which is then made with .faro to make/update .faro file
-// Currently used for updating SHAs 
+// Currently used for updating SHAs & Updating Toggle
 ipcMain.handle('create-faro', async (event, modPath, modData) => {
   if (!modPath) {
     throw new Error('No mod path provided');

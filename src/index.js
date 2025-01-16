@@ -40,11 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Close modal on outside click
-window.addEventListener('click', (event) => {
-  if (event.target === modal) modal.style.display = "none";
-});
-
 // Simply opens dropdowns for modlists 
 function toggleDropdown(id) {
   const dropdown = document.getElementById(id);
@@ -73,9 +68,9 @@ function closeModal() {
 // Open file dialog method that accepts an argument to know which field to update
 async function openFileDialog(type) {
   const initialDirectory = document.getElementById(type).value;
-  const filePath = await window.api.openFileDialog(initialDirectory);
+  const fileType = type === 'gamePath' ? '.exe' : null; // If gamePath its exec, otherwise folder
+  const filePath = await window.api.openFileDialog(initialDirectory, fileType);
 
-  // Update the input field with the selected file/folder path
   if (filePath) {
     document.getElementById(type).value = filePath;
   }
@@ -94,19 +89,12 @@ async function saveConfig() {
 // Closes settings without saving
 async function resetConfig() {
   const { startup, config } = await window.api.startupCheck();
-  document.getElementById('gamePath').value = config.gameDir;
+  document.getElementById('gamePath').value = config.gameExe;
   document.getElementById('modsPath').value = config.modsDir;
   const autoUpdateToggle = document.getElementById('autoUpdateToggle');
   autoUpdateToggle.checked = config.autoUpdate || false; // Default to false if undefined
   closeModal();
 }
-
-// Close modal when clicking outside the modal content
-window.addEventListener("click", (event) => {
-  if (event.target === modal) {
-    modal.style.display = "none";
-  }
-});
 
 // Methods for enabling/disabling auto-update
 async function enableAutoUpdate() {
@@ -143,7 +131,7 @@ async function CheckForPaths() {
   if (!startup) {
     openModal("Welcome to Faroquin! Please set your appropriate mod-paths and install Lovely/Steammodded to get started.");
   }
-  document.getElementById('gamePath').value = config.gameDir;
+  document.getElementById('gamePath').value = config.gameExe;
   document.getElementById('modsPath').value = config.modsDir;
   const autoUpdateToggle = document.getElementById('autoUpdateToggle');
   autoUpdateToggle.checked = config.autoUpdate || false; // Default to false if undefined
