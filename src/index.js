@@ -361,6 +361,9 @@ window.toggleMod = async (id) => {
   action(filePath, ".lovelyignore")
     .then(await window.api.log)
     .catch(await window.api.logError);
+
+  // Write our changes to the .faro so that it maintains the enabled/disabled state.
+  await window.api.createFaro(mod.modPath, mod);
 };
 
 async function updateMod(id) {
