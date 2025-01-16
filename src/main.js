@@ -78,7 +78,7 @@ app.on('ready', () => {
   })
 
   // Opens developer window for debugging
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 });
 
 app.on('window-all-closed', () => {

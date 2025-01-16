@@ -167,14 +167,6 @@ async function loadAndRenderMods() {
     .filter(mod => mod.core)
     .sort((a, b) => a.name.localeCompare(b.name));
 
-  // Checks for updates on mods, using a global variable to only run this check once after items are sorted.
-  if (checkUpdates) {
-    checkUpdates = false;
-    // TODO
-    // Currently waits, needs either an indicator or background check instead of stopping the app.
-    await CheckForUpdates(installedMods);
-  }
-
   renderModList('browseMods', browseMods);
   renderModList('installedMods', installedMods);
   renderModList('loaderMods', loaderMods);
@@ -186,6 +178,11 @@ async function loadAndRenderMods() {
     renderModList('installedMods', installedMods.filter(mod => mod.name.toLowerCase().includes(searchTerm)));
     renderModList('loaderMods', loaderMods.filter(mod => mod.name.toLowerCase().includes(searchTerm)));
   });
+
+  if (checkUpdates) {
+    checkUpdates = false;
+    await CheckForUpdates(installedMods);
+  }
 }
 
 // Checks for updates based on github commit hashes, hashes are stored in .faro files
@@ -203,6 +200,7 @@ async function CheckForUpdates(installedMods) {
           await window.api.log(`Update available for ${mod.name}. Current SHA: ${mod.sha}, New SHA: ${commitHash.sha}`);
           mod.canUpdate = true;
           await window.api.createFaro(mod.modPath, mod);
+          loadAndRenderMods();
         } else if (!mod.sha) {
           await window.api.log(`No SHA available for ${mod.name}, setting new SHA.`);
           mod.sha = commitHash.sha; // Set the new SHA if it's not available
